@@ -15,16 +15,13 @@ const Input = ({ cashiers, setCashiers }) => {
       if (least_Num > cashierItems) {
         least_Num = cashierItems;
         least_Cashier = id;
-        if (least_Num === 0) {
-          return;
-        }
       }
     });
     setCashiers((current) => {
       //   console.log(current);
       return current.map((line, id) => {
         if (least_Cashier === id) {
-          return [...line, Number(amountItems.current.value)];
+          return [...line, parseInt(amountItems.current.value)];
         } else {
           return line;
         }

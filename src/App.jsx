@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "./components/Input";
 
 function App() {
   const [cashiers, setCashiers] = useState([[], [5], [10], [], [2]]);
   // const [newCustomer, setNewCustomer] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCashiers((current) =>
+        current.map((cashier) =>
+          [cashier[0] - 1, ...cashier.slice(1)].filter((val) => val > 0)
+        )
+      );
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
   return (
     <div className="bg-black h-screen w-full">
       <Input cashiers={cashiers} setCashiers={setCashiers}></Input>
