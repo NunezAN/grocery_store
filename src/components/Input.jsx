@@ -1,10 +1,11 @@
 import React, { useRef } from "react";
 
-const Input = () => {
+const Input = ({ setNewCustomer }) => {
   let amountItems = useRef("");
   function handleSubmit(event) {
     event.preventDefault();
     console.log(amountItems.current.value);
+    setNewCustomer(Number(amountItems.current.value));
   }
   return (
     <div className="mx-auto p-4 text-white max-w-xl">
